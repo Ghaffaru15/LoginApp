@@ -53,7 +53,7 @@ public class LoginController implements Initializable
             DashboardController dashboardController = (DashboardController)loader.getController();
             dashboardController.getUser(username.getText());
             primaryStage.setTitle("Hello World");
-            primaryStage.setScene(new Scene(root, 300, 275));
+            primaryStage.setScene(new Scene(root, 600, 275));
             primaryStage.show();
         }else
         {

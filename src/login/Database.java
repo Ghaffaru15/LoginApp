@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Database
 {
     //connection variable
-    Connection conn;
+    //Connection conn;
 
     public static Connection connect()
     {
@@ -16,14 +16,19 @@ public class Database
 
             Class.forName("org.sqlite.JDBC");
 
-            conn = DriverManager.getConnection("jdbc:sqlite:company.db");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:company.sqlite");
+
+            return conn;
 
         } catch (SQLException e)
         {
             e.printStackTrace();
+            return null;
         } catch (ClassNotFoundException e)
         {
                System.out.println(e);
+               return null;
         }
+
     }
 }

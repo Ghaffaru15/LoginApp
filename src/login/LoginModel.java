@@ -1,6 +1,10 @@
 package login;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginModel
 {
@@ -15,8 +19,29 @@ public class LoginModel
        }
     }
 
-    public void isConnected()
+    public boolean isConnected() throws SQLException
     {
+        if (conn.isClosed())
+            return true;
+        else
+            return false;
+    }
+
+    public String getName() throws SQLException
+    {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+
+        preparedStatement = conn.prepareStatement("SELECT name FROM employee WHERE username = ?");
+
+        preparedStatement.setString(1,"ghaffar15");
+
+        resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next())
+            return resultSet.getString("name");
+        else
+            return "no";
 
     }
 }
